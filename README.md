@@ -20,7 +20,12 @@ docker-compose up -d
 If you encounter issues with files permissions in the mounted volumes, run the following:
 
 ~~~
-sudo chown -R 1000 ~/volumes/
+sudo chown -R 1000 PATH_TO_VOLUMES
 ~~~
+ex:
+~~~
+sudo chown -R 1000 /home/docker/volumes/
+~~~
+
 
 The data is persisted in /home/docker/volumes for all my lab containers, update the docker-compose file accordingly to fit your requirements.
