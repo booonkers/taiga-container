@@ -16,3 +16,11 @@ run the container using docker compose:
 ~~~
 docker-compose up -d
 ~~~
+
+If you encounter issues with files permissions in the mounted volumes, run the following:
+
+~~~
+sudo chown -R 1000 ~/volumes/
+~~~
+
+The data is persisted in /home/docker/volumes for all my lab containers, update the docker-compose file accordingly to fit your requirements.
