@@ -1,0 +1,37 @@
+data:
+  image: tianon/true
+  volumes:
+    - /home/docker/volumes/taiga/postgresql/data:/var/lib/postgresql/data
+    - /home/docker/volumes/taiga/media:/usr/local/taiga/media
+    - /home/docker/volumes/taiga/static:/usr/local/taiga/static
+    - /home/docker/volumes/taiga/logs:/usr/local/taiga/logs
+db:
+  image: postgres
+  environment:
+    POSTGRES_USER: taiga
+    POSTGRES_PASSWORD: password
+  volumes_from:
+    - data
+taigaback:
+  image: htdvisser/taiga-back:stable
+  hostname: dev.example.com
+  environment:
+    DEBUG: "${TAIGA_DEBUG}"
+    EMAIL_USE_TLS: "${EMAIL_SERVER_TLS}"
+    EMAIL_HOST: "${EMAIL_SERVER}"
+    EMAIL_PORT: "${MAIL_SERVER_SMTP_PORT}"
+    EMAIL_HOST_USER: "${EMAIL}"
+    EMAIL_HOST_PASSWORD: "${EMAIL_PASSWORD}"
+  links:
+    - db:postgres
+  volumes_from:
+    - data
+taigafront:
+  image: htdvisser/taiga-front-dist:stable
+  hostname: dev.example.com
+  links:
+    - taigaback
+  volumes_from:
+    - data
+  ports:
+    - 0.0.0.0:80:80
