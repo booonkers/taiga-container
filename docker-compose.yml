@@ -1,10 +1,10 @@
 data:
   image: tianon/true
   volumes:
-    - /home/docker/volumes/taiga/postgresql/data:/var/lib/postgresql/data
-    - /home/docker/volumes/taiga/media:/usr/local/taiga/media
-    - /home/docker/volumes/taiga/static:/usr/local/taiga/static
-    - /home/docker/volumes/taiga/logs:/usr/local/taiga/logs
+    - ${TAIGA_VOLUME}/postgresql/data:/var/lib/postgresql/data
+    - ${TAIGA_VOLUME}/media:/usr/local/taiga/media
+    - ${TAIGA_VOLUME}/static:/usr/local/taiga/static
+    - ${TAIGA_VOLUME}/logs:/usr/local/taiga/logs
 db:
   image: postgres
   environment:
@@ -34,4 +34,4 @@ taigafront:
   volumes_from:
     - data
   ports:
-    - 0.0.0.0:80:80
+    - 0.0.0.0:24001:24001
