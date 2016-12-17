@@ -4,6 +4,7 @@ create an .env file & setup the required env. variables:
 
 ~~~
 TAIGA_DEBUG=True|False
+TAIGA_VOLUME=PATH_TO_VOLUMES
 EMAIL_SERVER_TLS=True|False
 EMAIL_SERVER=yourEmailHost
 MAIL_SERVER_SMTP_PORT=XXX
